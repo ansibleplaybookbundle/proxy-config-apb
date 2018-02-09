@@ -1,0 +1,55 @@
+version: 1.0
+name: proxy-config
+description: Provides proxy configuration to containers as bind credentials.
+bindable: True
+async: optional
+metadata:
+  displayName: "Proxy Configuration (APB)"
+  longDescription: "Provides proxy environment variables to app containers as bind credentials."
+plans:
+  - name: passthrough
+    description: Copies the broker's proxy configuration to a secret accessible to containers as bind credentials.
+    free: True
+    metadata:
+      displayName: Broker Proxy Settings
+    parameters:
+      - name: broker_http_proxy
+        title: Copy http_proxy environment variable from broker
+        description: 'Uncheck this option to leave the http_proxy var empty.'
+        type: boolean
+        default: True
+
+      - name: broker_https_proxy
+        title: Copy https_proxy environment variable from broker
+        description: 'Uncheck this option to leave the https_proxy var empty.'
+        type: boolean
+        default: True
+
+      - name: broker_no_proxy
+        title: Copy no_proxy environment variable from broker
+        description: 'Uncheck this option to leave the no_proxy var empty.'
+        type: boolean
+        default: True
+
+  - name: custom
+    description: Provides custom proxy configuration as a secret accessible to containers as bind credentials.
+    free: True
+    metadata:
+      displayName: Custom Proxy Settings
+    parameters:
+      - name: http_proxy
+        title: HTTP proxy URL
+        description: 'URL to proxy HTTP traffic through. Will be used to set $http_proxy and $HTTP_PROXY environment variables. Can be the same as https_proxy. E.g. "http://squid-proxy-example.org:3128/". Leave blank to skip proxying HTTP traffic.'
+        type: string
+
+      - name: https_proxy
+        title: HTTPS proxy URL
+        description: 'URL to proxy HTTPS traffic through. Will be used to set $https_proxy and $HTTPS_PROXY environment variables. Can be the same as http_proxy. E.g. "http://squid-proxy-example.com:3128/". Leave blank to skip proxying HTTPS traffic.'
+        type: string
+
+      - name: no_proxy
+        title: No proxy URL list
+        description: 'Specifies URLs which should be exluded from proxying (should be contacted directly). Comma separated mix of hostnames, domain names, or both. E.g. "*.foobar.com,home.com'
+        type: string
+
+
