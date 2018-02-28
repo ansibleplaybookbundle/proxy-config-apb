@@ -1,21 +1,21 @@
 version: 1.0
 name: proxy-config
-description: Provides proxy configuration to containers as bind credentials.
+description: Proxy Configuration
 bindable: True
 async: optional
 metadata:
   displayName: "Proxy Configuration (APB)"
-  longDescription: "Provides proxy environment variables to app containers as bind credentials."
+  longDescription: "Provides bind credentials allowing other containers to consume proxy settings."
 plans:
   - name: passthrough
-    description: Copies the broker's proxy configuration to a secret accessible to containers as bind credentials.
+    description: Copy the broker's proxy configuration.
     free: True
     metadata:
       displayName: Broker Proxy Settings
     parameters: []
 
   - name: custom
-    description: Provides custom proxy configuration as a secret accessible to containers as bind credentials.
+    description: Provide custom proxy configuration.
     free: True
     metadata:
       displayName: Custom Proxy Settings
