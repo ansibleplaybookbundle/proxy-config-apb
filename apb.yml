@@ -1,5 +1,5 @@
 version: 1.0
-name: proxy-config
+name: proxy-config-apb
 description: Proxy Configuration
 bindable: True
 async: optional
